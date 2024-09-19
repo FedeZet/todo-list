@@ -31,11 +31,6 @@ class TaskController(@Autowired private val taskService: ITaskService,
         return ResponseEntity.status(HttpStatus.CREATED).body(taskService.saveTask(task))
     }
 
-    @GetMapping("/user")
-    fun prueba(): ResponseEntity<UserEntity> {
-        return ResponseEntity.ok(this.getUser())
-    }
-
     @PutMapping("/{idReceived}")
     fun updateTask(@PathVariable idReceived: Long, @RequestBody taskReceived: TaskEntity): ResponseEntity<Any> {
         if(!taskService.isExistTask(idReceived)) return ResponseEntity.notFound().build()
